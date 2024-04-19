@@ -11,8 +11,10 @@ namespace LnW_Amazon.Page
 {
     public class ProductPage
     {
-        public const string priceElement = "//span[contains(@class,'a-price-whole')]";
-        public const string addTocartButton = "//input[contains(@id,'add-to-cart-button')]";
+        public const string price2 = "//span[contains(@class,'a-price-whole')]";
+        public const string priceElement = "//div[contains(@class,'a-section')]/span[contains(@class,'a-price')]/span[@aria-hidden='true']/span[(@class='a-price-whole')]";
+        public const string addTocartButton2 = "//input[contains(@id,'add-to-cart-button')]";
+        public const string addTocartButton = "//div[contains(@class,'a-section')]/div[contains(@id,'addToCart_feature_div')]/div[contains(@class,'a-button-stack')]/span[contains(@class,'a-declarative')]/span[contains(@id,'submit.add-to-cart')]/span[@class='a-button-inner']/input[contains(@id,'add-to-cart-button')]";
         // private IWebDriver _driver;
 
         private IWebElement weSearchBox

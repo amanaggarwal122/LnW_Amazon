@@ -55,11 +55,11 @@ namespace LnW_Amazon.Page
         {
             WebDriverWait wait = new WebDriverWait(Driver.Instance, TimeSpan.FromSeconds(5));
             bool displayCheck = wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementToBeClickable(By.Id("attach-desktop-sideSheet"))).Displayed;
-            
+
             if (displayCheck == true)
             {
-                Thread.Sleep(1000);
-              //  Driver.Instance.SwitchTo().Frame(1);
+                Thread.Sleep(500);
+                //  Driver.Instance.SwitchTo().Frame(1);
                 IWebElement checkouttElement = wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementToBeClickable(By.Id("attach-close_sideSheet-link")));
                 checkouttElement.Click();
                 Thread.Sleep(1000);
@@ -72,11 +72,26 @@ namespace LnW_Amazon.Page
                 IWebElement addTocartElement = wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementToBeClickable(By.XPath(viewcartButton)));
                 addTocartElement.Click();
             }
-            
+
 
             string expectedTitle = wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.TagName("h1"))).Text;
             Assert.AreEqual(expectedTitle, "Shopping Cart");
         }
 
+        public void HideAlertBox()
+        {
+            WebDriverWait wait = new WebDriverWait(Driver.Instance, TimeSpan.FromSeconds(5));
+            bool displayCheck = wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementToBeClickable(By.Id("attach-desktop-sideSheet"))).Displayed;
+
+            if (displayCheck == true)
+            {
+                Thread.Sleep(1000);
+                //  Driver.Instance.SwitchTo().Frame(1);
+                IWebElement checkouttElement = wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementToBeClickable(By.Id("attach-close_sideSheet-link")));
+                checkouttElement.Click();
+                Thread.Sleep(500);
+
+            }
+        }
     }
 }

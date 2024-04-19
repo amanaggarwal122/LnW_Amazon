@@ -5,22 +5,30 @@ using NUnit.Framework;
 using OpenQA.Selenium.Support.UI;
 using LnW_Amazon.Page;
 using LnW_Amazon.Hook;
+using TechTalk.SpecFlow;
+using System.Text.RegularExpressions;
 
 namespace LnW_Amazon.StepDefinitions
 {
     [Binding]
     internal class Steps_AddToCart
     {
+        private readonly ScenarioContext _scenarioContext;
 
-       // Webdriver driver = new Chromedriver();
-
+        public Steps_AddToCart(ScenarioContext scenarioContext)
+        {
+            _scenarioContext = scenarioContext;
+        }
+        
         string productpagePrice;
+        int totalproductPrice;
         AmazonHook amazonPage;
         LandingPage landingPage;
         ProductPage productPage;
         CartPage cartPage;
+        
 
-        [Given(@"I am on Amazon India Website")]
+       [Given(@"I am on Amazon India Website")]
         public void GivenIAmOnAmazonIndiaWebsite()
         {
             
@@ -50,7 +58,7 @@ namespace LnW_Amazon.StepDefinitions
 
             //Step 5 : Move to new window and store the price in sceario context
             productpagePrice = productPage.getTextOfElement();
-
+            totalproductPrice = totalproductPrice + int.Parse(Regex.Replace(productpagePrice, @"[^0-9a-zA-Z]+", ""));
         }
 
         [When(@"I click on Add to cart")]
@@ -88,5 +96,24 @@ namespace LnW_Amazon.StepDefinitions
             string cartTotal = cartPage.getTextOfCartSubtotal();
             Assert.IsTrue(cartTotal.Contains(productpagePrice));
         }
+
+        [When(@"I hide the alert box")]
+        public void WhenIHideTheAlertBox()
+        {
+            cartPage = new CartPage();
+            cartPage.HideAlertBox();
+        }
+
+        [When(@"I verify subtotal of cart should match sum of item price")]
+        public void WhenIVerifySubtotalOfCartShouldMatchSumOfItemPrice()
+        {
+            cartPage = new CartPage();
+            string cartTotal = cartPage.getTextOfCartSubtotal();
+            int numerictotal = int.Parse(Regex.Replace(cartTotal, @"[^0-9a-zA-Z]+", ""));
+            Assert.IsTrue(numerictotal.Equals(totalproductPrice*100));
+            
+        }
+
+
     }
 }

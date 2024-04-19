@@ -16,10 +16,10 @@ namespace LnW_Amazon.Hook
         {
             var driver = new ChromeDriver();
             //Step 1 : Open Amazon.in
-            
+            Thread.Sleep(500);
             driver.Manage().Window.Maximize();
             driver.Navigate().GoToUrl("https://www.amazon.in/");
-            Thread.Sleep(1000);
+            
             Driver.Instance = driver;
         }
 

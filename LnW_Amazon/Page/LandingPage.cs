@@ -31,6 +31,7 @@ namespace LnW_Amazon.Page
         }
         public void SendValueInSearchBox(string value)
         {
+            weSearchBox.Clear();
           weSearchBox.SendKeys(value);            
         }
 
