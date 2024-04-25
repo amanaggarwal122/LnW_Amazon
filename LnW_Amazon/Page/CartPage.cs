@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using NUnit.Framework;
+using SeleniumExtras.WaitHelpers;
 
 namespace LnW_Amazon.Page
 {
@@ -90,6 +91,9 @@ namespace LnW_Amazon.Page
                 IWebElement checkouttElement = wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementToBeClickable(By.Id("attach-close_sideSheet-link")));
                 checkouttElement.Click();
                 Thread.Sleep(500);
+                //IAlert alert = wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.AlertIsPresent());
+               // Driver.Instance.SwitchTo().Alert();
+               // alert.Text;
 
             }
         }

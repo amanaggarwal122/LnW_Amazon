@@ -1,5 +1,6 @@
 ﻿Feature: AddToCart
 
+@UI
 Scenario: Find aa monitor and verify its price
 	Given I am on Amazon India Website
 	And I search for the product "Monitor"
@@ -9,6 +10,7 @@ Scenario: Find aa monitor and verify its price
 	And I verify the price of the item
 	Then I verify the subtotal of the cart
 
+@UI
 Scenario: Find a laptop and verify its price
 	Given I am on Amazon India Website
 	And I search for the product "Laptop"
@@ -18,6 +20,7 @@ Scenario: Find a laptop and verify its price
 	And I verify the price of the item
 	Then I verify the subtotal of the cart
 
+@UI
 Scenario: Find a Headphone and Keyboard and verify its price
 	Given I am on Amazon India Website
 	And I search for the product "Headphones"
